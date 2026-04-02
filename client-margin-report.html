@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiveLike Client Margin Report — March 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;--s1:#1a1d27;--s2:#232636;--bd:#2e3248;
+  --text:#e2e8f0;--muted:#8892a4;
+  --neg:#e74c3c;--crit:#e67e22;--bd-opp:#f1c40f;
+  --healthy:#27ae60;--low:#3498db;--vlow:#9b59b6;--acc:#667eea;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+     background:var(--bg);color:var(--text);font-size:14px;line-height:1.6}
+a{color:inherit}
+.wrap{max-width:1260px;margin:0 auto;padding:32px 20px}
+
+/* hero */
+.hero{background:linear-gradient(135deg,#1e2340,#2d1b69);border:1px solid var(--bd);
+      border-radius:10px;padding:36px 44px;margin-bottom:36px}
+.hero h1{font-size:1.9em;font-weight:700;margin-bottom:6px;
+         background:linear-gradient(90deg,#a78bfa,#67e8f9);
+         -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{color:var(--muted);font-size:.95em}
+.hero .meta{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap}
+.hero .meta span{background:rgba(255,255,255,.07);border-radius:5px;
+                 padding:3px 12px;font-size:.82em;color:var(--muted)}
+
+/* legend */
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.leg{display:flex;align-items:center;gap:6px;font-size:.8em;color:var(--muted);
+     background:var(--s1);border:1px solid var(--bd);border-radius:5px;padding:4px 10px}
+.dot{width:9px;height:9px;border-radius:50%}
+
+/* summary cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:40px}
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:18px;border-top:3px solid}
+.card .n{font-size:2.2em;font-weight:800;line-height:1}
+.card .l{color:var(--muted);font-size:.8em;margin-top:5px}
+
+/* sections */
+.section{margin-bottom:48px}
+.section-header{margin-bottom:14px}
+.section-header h2{font-size:1.2em;font-weight:700;display:inline}
+.pill{padding:2px 10px;border-radius:12px;font-size:.78em;font-weight:700;margin-left:8px;vertical-align:middle}
+.desc{color:var(--muted);margin-top:8px;font-size:.9em;max-width:820px;line-height:1.65}
+
+/* action list */
+.actions{list-style:none;margin:10px 0 16px;display:flex;flex-direction:column;gap:5px}
+.actions li{color:var(--muted);font-size:.88em;padding-left:16px;position:relative}
+.actions li::before{content:"→";position:absolute;left:0;color:var(--acc)}
+.actions li strong{color:var(--text)}
+
+/* table */
+.tbl-wrap{background:var(--s1);border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+table{width:100%;border-collapse:collapse}
+thead tr{background:var(--s2)}
+th{padding:10px 13px;text-align:left;font-size:.75em;font-weight:700;
+   text-transform:uppercase;letter-spacing:.05em;color:var(--muted);
+   border-bottom:1px solid var(--bd);white-space:nowrap}
+td{padding:10px 13px;border-bottom:1px solid var(--bd);vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,.025)}
+
+footer{text-align:center;padding:36px 0 20px;color:var(--muted);font-size:.82em;border-top:1px solid var(--bd);margin-top:40px}
+@media(max-width:700px){.hero{padding:22px}.cards{grid-template-columns:1fr 1fr}th,td{padding:8px 9px;font-size:.8em}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>LiveLike Client Margin Report</h1>
+  <div class="sub">Profitability &amp; usage analysis across 32 accounts · March 31, 2026</div>
+  <div class="meta">
+    <span>Margin = (MRR − Cost) / MRR</span>
+    <span>Cost allocated by share of API calls</span>
+    <span>Target zone: 80% – 95%</span>
+    <span>6-mo avg: Oct 2025 – Mar 2026</span>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="leg"><div class="dot" style="background:var(--neg)"></div>&lt;0% · Negative</div>
+  <div class="leg"><div class="dot" style="background:var(--crit)"></div>0–30% · Critical overuse</div>
+  <div class="leg"><div class="dot" style="background:var(--bd-opp)"></div>30–80% · BD expansion</div>
+  <div class="leg"><div class="dot" style="background:var(--healthy)"></div>80–95% · Healthy ✓</div>
+  <div class="leg"><div class="dot" style="background:var(--low)"></div>95–99% · Low usage</div>
+  <div class="leg"><div class="dot" style="background:var(--vlow)"></div>&gt;99% · Very low usage</div>
+</div>
+
+<div class="cards">
+
+  <div class="card" style="border-top-color:var(--neg)">
+    <div class="n" style="color:var(--neg)">2</div>
+    <div class="l">Negative Margin</div>
+  </div>
+  <div class="card" style="border-top-color:var(--crit)">
+    <div class="n" style="color:var(--crit)">2</div>
+    <div class="l">Critical (&lt;30%)</div>
+  </div>
+  <div class="card" style="border-top-color:var(--bd-opp)">
+    <div class="n" style="color:var(--bd-opp)">3</div>
+    <div class="l">BD Expansion (30–80%)</div>
+  </div>
+  <div class="card" style="border-top-color:var(--healthy)">
+    <div class="n" style="color:var(--healthy)">3</div>
+    <div class="l">Healthy (80–95%)</div>
+  </div>
+  <div class="card" style="border-top-color:var(--low)">
+    <div class="n" style="color:var(--low)">6</div>
+    <div class="l">Low Usage (95–99%)</div>
+  </div>
+  <div class="card" style="border-top-color:var(--vlow)">
+    <div class="n" style="color:var(--vlow)">16</div>
+    <div class="l">Very Low Usage (&gt;99%)</div>
+  </div>
+</div>
+
+    <div class="section">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.3em">🔴</span>
+          <h2>Negative Margin</h2>
+          <span class="pill" style="background:#e74c3c22;color:#e74c3c;border:1px solid #e74c3c44">2 clients</span>
+        </div>
+        <p class="desc">Infrastructure cost exceeds MRR. LiveLike is losing money on every dollar of revenue from these accounts.</p>
+      </div>
+      <ul class="actions"><li><strong>WBD TNT UK (−251%):</strong> Escalate immediately — cost is 3.5× MRR. Audit implementation and initiate contract renegotiation.</li><li><strong>PLDT (−84%):</strong> Review included-usage clauses. Propose usage-based add-on or reduce included allowance at next renewal.</li><li>Both accounts: share cost breakdown data with client as basis for commercial conversation.</li></ul>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Client</th><th style="text-align:right">Margin</th><th>Visual</th>
+          <th style="text-align:right">6-mo Avg</th><th style="text-align:right">vs Avg</th>
+          <th style="text-align:right">MRR</th><th style="text-align:right">P&L</th>
+          
+        </tr></thead>
+        <tbody><tr>
+          <td style="font-weight:600">PLDT (FirstLight)</td>
+          <td style="text-align:right;color:#e74c3c;font-weight:700">-84.3%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:53.9%;height:100%;background:#e74c3c;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">-53.1%</td>
+          <td style="text-align:right"><span style="color:#e74c3c;font-size:.85em">▼31.2pp</span></td>
+          <td style="text-align:right">$3,500</td>
+          <td style="text-align:right">$2,550</td>
+          
+        </tr><tr>
+          <td style="font-weight:600">WBD TNT UK</td>
+          <td style="text-align:right;color:#e74c3c;font-weight:700">-251.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:12.2%;height:100%;background:#e74c3c;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">-280.1%</td>
+          <td style="text-align:right"><span style="color:#27ae60;font-size:.85em">▲29.1pp</span></td>
+          <td style="text-align:right">$18,750</td>
+          <td style="text-align:right"><span style="color:#e74c3c">($47,066)</span></td>
+          
+        </tr></tbody>
+      </table></div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.3em">🟠</span>
+          <h2>Critical Overuse  —  Margin &lt;30%</h2>
+          <span class="pill" style="background:#e67e2222;color:#e67e22;border:1px solid #e67e2244">2 clients</span>
+        </div>
+        <p class="desc">High API consumption relative to MRR. Strong platform engagement, but economics are unsustainable. Priority BD accounts for expansion.</p>
+      </div>
+      <ul class="actions"><li><strong>WBD B/R ($77K MRR, 6-mo avg 42%):</strong> #1 commercial priority. Usage has scaled well beyond contract tier — expansion proposal needed now.</li><li><strong>TF1:</strong> Margin improving (▲ trend) — usage normalizing after a spike. Monitor monthly; prepare expansion proposal if usage holds.</li><li>Both: offer an engineering implementation review to identify quick wins that reduce unnecessary API calls.</li></ul>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Client</th><th style="text-align:right">Margin</th><th>Visual</th>
+          <th style="text-align:right">6-mo Avg</th><th style="text-align:right">vs Avg</th>
+          <th style="text-align:right">MRR</th><th style="text-align:right">P&L</th>
+          
+        </tr></thead>
+        <tbody><tr>
+          <td style="font-weight:600">WBD B/R</td>
+          <td style="text-align:right;color:#e67e22;font-weight:700">12.9%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:78.2%;height:100%;background:#e67e22;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">42.0%</td>
+          <td style="text-align:right"><span style="color:#e74c3c;font-size:.85em">▼29.0pp</span></td>
+          <td style="text-align:right">$76,667</td>
+          <td style="text-align:right">$49,919</td>
+          
+        </tr><tr>
+          <td style="font-weight:600">TF1</td>
+          <td style="text-align:right;color:#e67e22;font-weight:700">21.2%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:80.3%;height:100%;background:#e67e22;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">-32.1%</td>
+          <td style="text-align:right"><span style="color:#27ae60;font-size:.85em">▲53.3pp</span></td>
+          <td style="text-align:right">$9,298</td>
+          <td style="text-align:right">$1,969</td>
+          
+        </tr></tbody>
+      </table></div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.3em">🟡</span>
+          <h2>BD Expansion Opportunity  —  30–80%</h2>
+          <span class="pill" style="background:#f1c40f22;color:#f1c40f;border:1px solid #f1c40f44">3 clients</span>
+        </div>
+        <p class="desc">Clients are actively using the platform. Economics need rebalancing — high usage gives BD a data-backed case for expanding their contract.</p>
+      </div>
+      <ul class="actions"><li><strong>Chelsea FC (6-mo avg 35%):</strong> Usage spiked sharply this year. Lock in a higher tier before renewal.</li><li><strong>Saudi Telecom (43%, declining):</strong> Usage growing — expansion proposal should be prioritized this quarter.</li><li><strong>FranceTV (79%):</strong> Near the healthy zone. Modest expansion or optimization could achieve target margin.</li></ul>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Client</th><th style="text-align:right">Margin</th><th>Visual</th>
+          <th style="text-align:right">6-mo Avg</th><th style="text-align:right">vs Avg</th>
+          <th style="text-align:right">MRR</th><th style="text-align:right">P&L</th>
+          
+        </tr></thead>
+        <tbody><tr>
+          <td style="font-weight:600">FranceTV </td>
+          <td style="text-align:right;color:#f1c40f;font-weight:700">79.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:94.7%;height:100%;background:#f1c40f;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">82.7%</td>
+          <td style="text-align:right"><span style="color:#e74c3c;font-size:.85em">▼3.7pp</span></td>
+          <td style="text-align:right">$14,528</td>
+          <td style="text-align:right">$11,470</td>
+          
+        </tr><tr>
+          <td style="font-weight:600">Chelsea FC</td>
+          <td style="text-align:right;color:#f1c40f;font-weight:700">68.1%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:92.0%;height:100%;background:#f1c40f;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">35.4%</td>
+          <td style="text-align:right"><span style="color:#27ae60;font-size:.85em">▲32.7pp</span></td>
+          <td style="text-align:right">$16,805</td>
+          <td style="text-align:right">$11,445</td>
+          
+        </tr><tr>
+          <td style="font-weight:600">Saudi Telecom</td>
+          <td style="text-align:right;color:#f1c40f;font-weight:700">42.7%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:85.7%;height:100%;background:#f1c40f;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">44.1%</td>
+          <td style="text-align:right"><span style="color:#e74c3c;font-size:.85em">▼1.4pp</span></td>
+          <td style="text-align:right">$6,667</td>
+          <td style="text-align:right">$2,848</td>
+          
+        </tr></tbody>
+      </table></div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.3em">🟢</span>
+          <h2>Healthy  —  80–95%</h2>
+          <span class="pill" style="background:#27ae6022;color:#27ae60;border:1px solid #27ae6044">3 clients</span>
+        </div>
+        <p class="desc">Ideal balance of platform usage and margin. These accounts are the model for the portfolio. Protect and replicate.</p>
+      </div>
+      <ul class="actions"><li>Document implementation patterns as onboarding references for new clients.</li><li>Watch trend column — a large positive shift toward 99%+ signals dropping usage and potential drift into churn-risk territory.</li></ul>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Client</th><th style="text-align:right">Margin</th><th>Visual</th>
+          <th style="text-align:right">6-mo Avg</th><th style="text-align:right">vs Avg</th>
+          <th style="text-align:right">MRR</th><th style="text-align:right">P&L</th>
+          
+        </tr></thead>
+        <tbody><tr>
+          <td style="font-weight:600">SportRadar (NBA League Pass Project)</td>
+          <td style="text-align:right;color:#27ae60;font-weight:700">85.6%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:96.4%;height:100%;background:#27ae60;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">78.9%</td>
+          <td style="text-align:right"><span style="color:#27ae60;font-size:.85em">▲6.7pp</span></td>
+          <td style="text-align:right">$10,500</td>
+          <td style="text-align:right">$8,984</td>
+          
+        </tr><tr>
+          <td style="font-weight:600">LFP</td>
+          <td style="text-align:right;color:#27ae60;font-weight:700">83.9%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:96.0%;height:100%;background:#27ae60;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">76.2%</td>
+          <td style="text-align:right"><span style="color:#27ae60;font-size:.85em">▲7.7pp</span></td>
+          <td style="text-align:right">$5,811</td>
+          <td style="text-align:right">$4,874</td>
+          
+        </tr><tr>
+          <td style="font-weight:600">SportRadar (Setanta)</td>
+          <td style="text-align:right;color:#27ae60;font-weight:700">87.4%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:96.8%;height:100%;background:#27ae60;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">80.7%</td>
+          <td style="text-align:right"><span style="color:#27ae60;font-size:.85em">▲6.7pp</span></td>
+          <td style="text-align:right">$3,500</td>
+          <td style="text-align:right">$3,058</td>
+          
+        </tr></tbody>
+      </table></div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.3em">🔵</span>
+          <h2>Low Usage  —  95–99%</h2>
+          <span class="pill" style="background:#3498db22;color:#3498db;border:1px solid #3498db44">6 clients</span>
+        </div>
+        <p class="desc">Platform is integrated but not heavily used. Engagement risk increases with MRR — proactive outreach recommended.</p>
+      </div>
+      <ul class="actions"><li><strong>GOTHAM Sports ($28.8K MRR, HIGH):</strong> Highest-value account in this tier. Schedule a platform health review to uncover adoption blockers.</li><li>For all: offer a feature audit call — position as a success review, not a sales call.</li></ul>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Client</th><th style="text-align:right">Margin</th><th>Visual</th>
+          <th style="text-align:right">6-mo Avg</th><th style="text-align:right">vs Avg</th>
+          <th style="text-align:right">MRR</th><th style="text-align:right">P&L</th>
+          <th>Churn Risk</th>
+        </tr></thead>
+        <tbody><tr>
+          <td style="font-weight:600">GOTHAM Sports</td>
+          <td style="text-align:right;color:#3498db;font-weight:700">96.6%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.2%;height:100%;background:#3498db;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">97.2%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.5pp</span></td>
+          <td style="text-align:right">$28,750</td>
+          <td style="text-align:right">$27,782</td>
+          <td><span style="background:rgba(231,76,60,.15);color:#e74c3c;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e74c3c44">HIGH</span></td>
+        </tr><tr>
+          <td style="font-weight:600">NY Mets (Venuetize)</td>
+          <td style="text-align:right;color:#3498db;font-weight:700">97.2%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.3%;height:100%;background:#3498db;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">96.4%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.8pp</span></td>
+          <td style="text-align:right">$6,667</td>
+          <td style="text-align:right">$6,477</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Brentford F.C.</td>
+          <td style="text-align:right;color:#3498db;font-weight:700">97.8%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.5%;height:100%;background:#3498db;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">96.4%</td>
+          <td style="text-align:right"><span style="color:#27ae60;font-size:.85em">▲1.4pp</span></td>
+          <td style="text-align:right">$5,346</td>
+          <td style="text-align:right">$5,229</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Nottingham Forest</td>
+          <td style="text-align:right;color:#3498db;font-weight:700">97.6%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.4%;height:100%;background:#3498db;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">98.3%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.7pp</span></td>
+          <td style="text-align:right">$3,529</td>
+          <td style="text-align:right">$3,444</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Celtic FC</td>
+          <td style="text-align:right;color:#3498db;font-weight:700">97.2%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.3%;height:100%;background:#3498db;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">98.3%</td>
+          <td style="text-align:right"><span style="color:#e74c3c;font-size:.85em">▼1.1pp</span></td>
+          <td style="text-align:right">$2,958</td>
+          <td style="text-align:right">$2,875</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Pro League (Jupiler)</td>
+          <td style="text-align:right;color:#3498db;font-weight:700">97.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.3%;height:100%;background:#3498db;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">96.5%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.5pp</span></td>
+          <td style="text-align:right">$2,929</td>
+          <td style="text-align:right">$2,841</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr></tbody>
+      </table></div>
+    </div>
+    <div class="section">
+      <div class="section-header">
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:1.3em">🟣</span>
+          <h2>Very Low Usage  —  &gt;99%</h2>
+          <span class="pill" style="background:#9b59b622;color:#9b59b6;border:1px solid #9b59b644">16 clients</span>
+        </div>
+        <p class="desc">Near-zero API footprint relative to MRR. Clients are paying for a platform they aren't using. Churn risk scales directly with MRR. MLB and Yahoo! Sports are flagged as outliers and excluded from churn risk ranking.</p>
+      </div>
+      <ul class="actions"><li><strong>BeIN Sports ($29K MRR, HIGH):</strong> Consistently near-zero usage across 15 months — may be a structural integration issue. Investigate urgently.</li><li><strong>Canal+ ($26K MRR, HIGH):</strong> No usage trend improvement. Initiate re-engagement before next renewal.</li><li><strong>LIV Golf, NBA, PSG, PFL, TMRW (MEDIUM):</strong> Schedule product adoption conversations in Q2.</li><li><strong>LOW risk accounts:</strong> Group touchpoints — product webinars, feature updates, success case sharing.</li></ul>
+      <div class="tbl-wrap"><table>
+        <thead><tr>
+          <th>Client</th><th style="text-align:right">Margin</th><th>Visual</th>
+          <th style="text-align:right">6-mo Avg</th><th style="text-align:right">vs Avg</th>
+          <th style="text-align:right">MRR</th><th style="text-align:right">P&L</th>
+          <th>Churn Risk</th>
+        </tr></thead>
+        <tbody><tr>
+          <td style="font-weight:600">MLB</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">100.0%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$55,938</td>
+          <td style="text-align:right">$55,924</td>
+          <td><span style="background:rgba(255,255,255,.08);color:#8892a4;padding:2px 9px;border-radius:12px;font-size:.75em">outlier</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Yahoo! Sports</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">99.9%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.8%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.1pp</span></td>
+          <td style="text-align:right">$50,000</td>
+          <td style="text-align:right">$49,944</td>
+          <td><span style="background:rgba(255,255,255,.08);color:#8892a4;padding:2px 9px;border-radius:12px;font-size:.75em">outlier</span></td>
+        </tr><tr>
+          <td style="font-weight:600">BeIN Sports (TOD)</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.5%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.5pp</span></td>
+          <td style="text-align:right">$29,190</td>
+          <td style="text-align:right">$29,188</td>
+          <td><span style="background:rgba(231,76,60,.15);color:#e74c3c;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e74c3c44">HIGH</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Canal+</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">100.0%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$26,441</td>
+          <td style="text-align:right">$26,432</td>
+          <td><span style="background:rgba(231,76,60,.15);color:#e74c3c;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e74c3c44">HIGH</span></td>
+        </tr><tr>
+          <td style="font-weight:600">LIV Golf (Viewlift)</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.9%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.1pp</span></td>
+          <td style="text-align:right">$20,000</td>
+          <td style="text-align:right">$20,000</td>
+          <td><span style="background:rgba(230,126,34,.15);color:#e67e22;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e67e2244">MEDIUM</span></td>
+        </tr><tr>
+          <td style="font-weight:600">PSG</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">99.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.8%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">98.5%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.5pp</span></td>
+          <td style="text-align:right">$18,253</td>
+          <td style="text-align:right">$18,070</td>
+          <td><span style="background:rgba(230,126,34,.15);color:#e67e22;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e67e2244">MEDIUM</span></td>
+        </tr><tr>
+          <td style="font-weight:600">NBA</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">100.0%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$16,667</td>
+          <td style="text-align:right">$16,667</td>
+          <td><span style="background:rgba(230,126,34,.15);color:#e67e22;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e67e2244">MEDIUM</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Professional Fighters League</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">99.9%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.8%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.1pp</span></td>
+          <td style="text-align:right">$12,500</td>
+          <td style="text-align:right">$12,490</td>
+          <td><span style="background:rgba(230,126,34,.15);color:#e67e22;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e67e2244">MEDIUM</span></td>
+        </tr><tr>
+          <td style="font-weight:600">TMRW</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">99.6%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.9%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.6%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$11,250</td>
+          <td style="text-align:right">$11,201</td>
+          <td><span style="background:rgba(230,126,34,.15);color:#e67e22;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #e67e2244">MEDIUM</span></td>
+        </tr><tr>
+          <td style="font-weight:600">USOPC (Next League)</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">100.0%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$6,250</td>
+          <td style="text-align:right">$6,250</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">UFC</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">100.0%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$5,000</td>
+          <td style="text-align:right">$5,000</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">IndyWork (Pole Position)</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">99.2%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.8%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.1%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.1pp</span></td>
+          <td style="text-align:right">$5,000</td>
+          <td style="text-align:right">$4,960</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Cinedigm / Cineverse</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.9%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$4,000</td>
+          <td style="text-align:right">$3,999</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Vegas Golden Knights (Venuetize)</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">99.3%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.8%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">99.3%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$3,333</td>
+          <td style="text-align:right">$3,310</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Christian Broadcasting Network</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">100.0%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:100.0%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">100.0%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~0.0pp</span></td>
+          <td style="text-align:right">$2,200</td>
+          <td style="text-align:right">$2,200</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr><tr>
+          <td style="font-weight:600">Teazit</td>
+          <td style="text-align:right;color:#9b59b6;font-weight:700">99.2%</td>
+          <td><div style="background:rgba(255,255,255,.07);border-radius:3px;height:7px;width:130px;overflow:hidden"><div style="width:99.8%;height:100%;background:#9b59b6;border-radius:3px"></div></div></td>
+          <td style="text-align:right;color:#8892a4">98.2%</td>
+          <td style="text-align:right"><span style="color:#8892a4;font-size:.85em">~1.0pp</span></td>
+          <td style="text-align:right">$194</td>
+          <td style="text-align:right">$192</td>
+          <td><span style="background:rgba(52,152,219,.12);color:#3498db;padding:2px 9px;border-radius:12px;font-size:.75em;border:1px solid #3498db44">LOW</span></td>
+        </tr></tbody>
+      </table></div>
+    </div>
+<footer>LiveLike · Client Margin Report · March 31, 2026 · Internal Use Only</footer>
+</div>
+</body>
+</html>
